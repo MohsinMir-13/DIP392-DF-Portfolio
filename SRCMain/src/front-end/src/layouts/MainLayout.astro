@@ -1,0 +1,29 @@
+---
+import '../styles/index.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Design Factory - Where Innovation Meets Education" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navbar client:load />
+    <slot />
+    <Footer />
+  </body>
+</html> 

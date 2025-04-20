@@ -1,0 +1,123 @@
+/* Import Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import color variables */
+@import './colors.css';
+
+/* Base styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply min-h-screen text-black dark:text-white;
+    background-image: linear-gradient(to bottom,
+      rgba(235, 235, 235, 0.20),
+      rgba(235, 235, 235, 0.20)
+    ), url('/background.png');
+  }
+
+  /* Dark mode background */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-image: linear-gradient(to bottom,
+        rgba(20, 20, 20, 0.20),
+        rgba(20, 20, 20, 0.20)
+      ), url('/background.png');
+    }
+  }
+
+  body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* Overlay for background image if needed */
+  .bg-overlay {
+    @apply absolute inset-0 bg-white/5 dark:bg-black/50 pointer-events-none;
+  }
+}
+
+/* Navbar grid background */
+.navbar-grid {
+  background-color: rgba(0, 85, 81, 0.97);
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Component styles */
+@layer components {
+  .page-wrapper {
+    @apply relative min-h-screen;
+  }
+
+  .content-wrapper {
+    @apply relative z-10;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center px-6 py-3 border border-secondary text-base font-medium rounded-md text-black bg-secondary hover:bg-secondary/90 transition-colors;
+  }
+
+  .btn-tertiary {
+    @apply inline-flex items-center px-6 py-3 border border-tertiary text-base font-medium rounded-md text-black bg-tertiary hover:bg-tertiary/90 transition-colors;
+  }
+
+  .btn-energize {
+    @apply inline-flex items-center px-6 py-3 border border-energize text-base font-medium rounded-md text-white bg-energize hover:bg-energize/90 transition-colors;
+  }
+
+  .heading-1 {
+    @apply text-4xl sm:text-6xl font-bold text-black dark:text-white mb-6;
+  }
+
+  .heading-2 {
+    @apply text-3xl sm:text-4xl font-bold text-black dark:text-white mb-4;
+  }
+
+  .heading-3 {
+    @apply text-2xl sm:text-3xl font-bold text-black dark:text-white mb-3;
+  }
+
+  .text-body {
+    @apply text-base text-black dark:text-white;
+  }
+
+  .text-body-lg {
+    @apply text-xl text-black dark:text-white;
+  }
+
+  .link {
+    @apply text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors;
+  }
+
+  .link-light {
+    @apply text-white hover:text-white/80 underline-offset-4 hover:underline transition-colors;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-br from-primary via-primary/50 to-transparent;
+  }
+
+  .gradient-secondary {
+    @apply bg-gradient-to-br from-secondary via-secondary/50 to-transparent;
+  }
+
+  .gradient-energize {
+    @apply bg-gradient-to-br from-energize via-energize/50 to-transparent;
+  }
+} 
