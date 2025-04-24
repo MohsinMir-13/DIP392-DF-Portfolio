@@ -1,0 +1,27 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { motion } from 'framer-motion';
+import { PROJECTS_API_ENDPOINT } from '../config/api';
+
+// Projects component will be imported and used similarly to how Hero is used in index.astro
+import ProjectsGrid from '../components/ProjectsGrid';
+---
+
+<MainLayout title="Projects - Design Factory">
+  <div class="page-wrapper">
+    <div class="bg-overlay"></div>
+    <div class="content-wrapper">
+      <section class="py-20">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h1 class="heading-1">Our Projects</h1>
+            <p class="text-body-lg">
+              Explore our innovative solutions and creative endeavors
+            </p>
+          </div>
+          <ProjectsGrid client:load />
+        </div>
+      </section>
+    </div>
+  </div>
+</MainLayout>
