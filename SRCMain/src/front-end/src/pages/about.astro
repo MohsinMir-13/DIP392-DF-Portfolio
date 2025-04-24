@@ -1,0 +1,80 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { motion } from 'framer-motion';
+import Partners from '../components/Partners';
+---
+
+<MainLayout title="About - Design Factory">
+  <div class="page-wrapper">
+    <div class="bg-overlay"></div>
+    <div class="content-wrapper">
+      <!-- Hero Section -->
+      <section class="pt-16 lg:pt-40 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 class="heading-1">
+                Digital Portfolio
+                <span class="text-secondary">Design Factory</span>
+              </h1>
+              <p class="text-body-lg mb-8">
+                A platform where students and professionals showcase their projects, designs, and achievements in an interactive format.
+              </p>
+            </div>
+            <div class="relative">
+              <img 
+                src="/1.svg" 
+                alt="Design Factory Innovation" 
+                class="w-full h-auto max-w-[200px] lg:max-w-[250px] mx-auto transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission Section -->
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1">
+              <img 
+                src="/2.svg" 
+                alt="Our Mission" 
+                class="w-full h-auto max-w-[200px] lg:max-w-[250px] mx-auto transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="order-1 lg:order-2">
+              <h2 class="heading-2 mb-6">Our Mission</h2>
+              <p class="text-body mb-6">
+                We aim to create a digital space where creativity meets functionality, enabling users to:
+              </p>
+              <ul class="space-y-4 text-body">
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Create and manage professional profiles
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Upload and showcase innovative projects
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-secondary mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Build meaningful connections
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partners Section -->
+      <Partners client:load />
+    </div>
+  </div>
+</MainLayout>
