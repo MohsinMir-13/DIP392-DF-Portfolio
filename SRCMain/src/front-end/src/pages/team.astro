@@ -1,0 +1,123 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { TEAMS_API_ENDPOINT } from '../config/api';
+
+interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  email: string;
+  avatar: string;
+  createdAt: string;
+}
+
+// Fetch team members from API with error handling and debugging
+let teamMembers: TeamMember[] = [];
+let error = null;
+
+try {
+  console.log('Fetching team members from:', TEAMS_API_ENDPOINT);
+  const response = await fetch(TEAMS_API_ENDPOINT);
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  const data = await response.json();
+  console.log('Received data:', data);
+  
+  if (Array.isArray(data)) {
+    teamMembers = data;
+    console.log(`Successfully loaded ${teamMembers.length} team members`);
+  } else {
+    console.error('API response is not an array:', data);
+    error = 'Invalid data format received from API';
+  }
+} catch (e) {
+  console.error('Error fetching team members:', e);
+  error = e instanceof Error ? e.message : 'An error occurred while fetching team members';
+}
+---
+
+<MainLayout title="Team - Design Factory">
+  <div class="page-wrapper">
+    <div class="bg-overlay"></div>
+    <div class="content-wrapper">
+      <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h1 class="heading-1">Meet With Team</h1>
+            <p class="text-body-lg">The creative minds behind Design Factory</p>
+          </div>
+
+          {error ? (
+            <div class="text-center py-10">
+              <p class="text-red-500">{error}</p>
+            </div>
+          ) : teamMembers.length > 0 ? (
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <div 
+                  class="bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center opacity-0 animate-fadeIn"
+                  style={`animation-delay: ${index * 100}ms`}
+                >
+                  <div class="w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full bg-neutral-200">
+                    <img
+                      src={member.avatar}
+                      alt={member.name}
+                      class="w-full h-full object-cover transform hover:scale-105 transition-all duration-300"
+                    />
+                  </div>
+                  <h3 class="text-xl font-bold text-black dark:text-white mb-2">
+                    {member.name}
+                  </h3>
+                  <p class="text-energize mb-2">
+                    {member.role}
+                  </p>
+                  <a 
+                    href={`mailto:${member.email}`} 
+                    class="text-sm text-gray-600 dark:text-gray-400 hover:text-energize dark:hover:text-energize transition-colors"
+                  >
+                    {member.email}
+                  </a>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="text-center py-10">
+              <p class="text-body">Loading team members...</p>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .page-wrapper {
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 10;
+    padding-top: 4rem;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+</style>
