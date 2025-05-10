@@ -1,1 +1,11 @@
+{
+  "name": "srcmain",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "workspaces": [
+    "src/front-end",
+    "src/back-end"
+  ]
+}
 
